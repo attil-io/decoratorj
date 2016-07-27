@@ -1,9 +1,9 @@
 package io.attil.decoratorj;
 
 import java.io.File;
-import net.imglib2.img.Img;
-import net.imglib2.type.NativeType;
-import net.imglib2.type.numeric.NumericType;
+
+import ij.ImagePlus;
+import ij.io.Opener;
 
 public class Main {
 
@@ -16,5 +16,7 @@ public class Main {
 		Object blurredFilteredImage = blurFilter.getInternalImage();
 		
 		File file = new File("lena.gif");
+		final ImagePlus imp = new Opener().openImage( file.getAbsolutePath() );
+		imp.show();
 	}
 }
