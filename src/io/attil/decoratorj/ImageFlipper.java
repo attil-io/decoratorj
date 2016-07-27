@@ -8,8 +8,9 @@ public class ImageFlipper extends ImageDecorator {
 
 	@Override
 	public Object getInternalImage() {
+		Object image = getParent().getInternalImage();
 		System.out.println("flipping image");
-		return null;
+		return image;
 	}
 
 }

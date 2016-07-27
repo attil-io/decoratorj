@@ -8,8 +8,9 @@ public class BlurFilter extends ImageDecorator {
 
 	@Override
 	public Object getInternalImage() {
+		Object image = getParent().getInternalImage();
 		System.out.println("blurring image");
-		return null;
+		return image;
 	}
 
 

@@ -9,6 +9,7 @@ public class BaseImage implements Image {
 	
 	@Override
 	public Object getInternalImage() {
+		System.out.println("returning base image");
 		return imageObject;
 	}
 
