@@ -33,5 +33,10 @@
        <artifactId>flip</artifactId>
        <version>1.5.3</version>
     </dependency>
+    <dependency>
+       <groupId>marvinplugins</groupId>
+       <artifactId>gaussianblur</artifactId>
+       <version>1.5.3</version>
+    </dependency>
   </dependencies>
 </project>

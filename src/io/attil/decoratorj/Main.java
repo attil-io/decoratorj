@@ -26,7 +26,7 @@ public class Main extends JFrame implements ActionListener {
 	private JPanel  panelBottom; 
 
 	private JButton buttonFlip,
-					buttonEdgeDetector,
+					buttonGaussianBlur,
 					buttonInvert,
 					buttonReset;
 
@@ -43,8 +43,8 @@ public class Main extends JFrame implements ActionListener {
 		// Create Graphical Interface 
 		buttonFlip = new JButton("Flip");
 		buttonFlip.addActionListener(this); 
-		buttonEdgeDetector = new JButton("EdgeDetector");
-		buttonEdgeDetector.addActionListener(this); 
+		buttonGaussianBlur = new JButton("Gaussian");
+		buttonGaussianBlur.addActionListener(this); 
 		buttonInvert = new JButton("Invert");
 		buttonInvert.addActionListener(this); 
 		buttonReset = new JButton("Reset");
@@ -52,7 +52,7 @@ public class Main extends JFrame implements ActionListener {
 
 		panelBottom = new JPanel();
 		panelBottom.add(buttonFlip);
-		panelBottom.add(buttonEdgeDetector);
+		panelBottom.add(buttonGaussianBlur);
 		panelBottom.add(buttonInvert);
 		panelBottom.add(buttonReset); 
 
@@ -83,7 +83,9 @@ public class Main extends JFrame implements ActionListener {
 			imagePlugin = MarvinPluginLoader.loadImagePlugin("org.marvinproject.image.transform.flip.jar");
 			imagePlugin.process(image, image);
 		}
-		else if (e.getSource() == buttonEdgeDetector) {
+		else if (e.getSource() == buttonGaussianBlur) {
+			imagePlugin = MarvinPluginLoader.loadImagePlugin("org.marvinproject.image.blur.gaussianBlur.jar");
+			imagePlugin.process(image, image);
 		}
 		else if(e.getSource() == buttonInvert){
 		}
