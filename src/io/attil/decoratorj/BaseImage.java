@@ -1,14 +1,16 @@
 package io.attil.decoratorj;
 
+import marvin.image.MarvinImage;
+
 public class BaseImage implements Image {
-	private Object imageObject;
+	private MarvinImage imageObject;
 	
-	public BaseImage(Object imageObject) {
+	public BaseImage(MarvinImage imageObject) {
 		this.imageObject = imageObject;
 	}
 	
 	@Override
-	public Object getInternalImage() {
+	public MarvinImage getInternalImage() {
 		System.out.println("returning base image");
 		return imageObject;
 	}

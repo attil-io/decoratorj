@@ -1,5 +1,7 @@
 package io.attil.decoratorj;
 
+import marvin.image.MarvinImage;
+
 public interface Image {
-	Object getInternalImage();
+	MarvinImage getInternalImage();
 }

@@ -1,5 +1,7 @@
 package io.attil.decoratorj;
 
+import marvin.image.MarvinImage;
+
 public class ImageFlipper extends ImageDecorator {
 
 	public ImageFlipper(Image image) {
@@ -7,8 +9,8 @@ public class ImageFlipper extends ImageDecorator {
 	}
 
 	@Override
-	public Object getInternalImage() {
-		Object image = getParent().getInternalImage();
+	public MarvinImage getInternalImage() {
+		MarvinImage image = getParent().getInternalImage();
 		System.out.println("flipping image");
 		return image;
 	}
