@@ -11,8 +11,7 @@ public class BaseImage implements Image {
 	
 	@Override
 	public MarvinImage getInternalImage() {
-		System.out.println("returning base image");
-		return imageObject;
+		return imageObject.clone();
 	}
 
 	public Image getParent() {

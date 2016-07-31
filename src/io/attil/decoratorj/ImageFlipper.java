@@ -15,7 +15,7 @@ public class ImageFlipper extends ImageDecorator {
 
 	@Override
 	public MarvinImage getInternalImage() {
-		MarvinImage image = getParent().getInternalImage();
+		MarvinImage image = getParent().getInternalImage().clone();
 		imagePlugin.process(image, image);
 		image.update();
 		return image;
