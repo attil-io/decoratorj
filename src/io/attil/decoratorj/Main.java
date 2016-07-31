@@ -1,14 +1,18 @@
 package io.attil.decoratorj;
 
 
-import java.awt.BorderLayout; 
-import java.awt.Container; 
-import java.awt.event.ActionEvent; 
-import java.awt.event.ActionListener; 
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JButton; 
-import javax.swing.JFrame; 
-import javax.swing.JPanel; 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import marvin.gui.MarvinImagePanel;
+import marvin.image.MarvinImage;
+import marvin.io.MarvinImageIO; 
 
 public class Main extends JFrame implements ActionListener { 
 	private static final long serialVersionUID = 1L;
@@ -21,6 +25,10 @@ public class Main extends JFrame implements ActionListener {
 					buttonInvert,
 					buttonReset;
 
+	private MarvinImagePanel imagePanel;
+	private MarvinImage      image,
+							 backupImage;
+	
 	public Main() { 
 		super("First Application");
 
@@ -40,11 +48,19 @@ public class Main extends JFrame implements ActionListener {
 		panelBottom.add(buttonInvert);
 		panelBottom.add(buttonReset); 
 
+		// ImagePanel 
+		imagePanel = new MarvinImagePanel();
+		
 		Container l_c = getContentPane();
 		l_c.setLayout(new BorderLayout());
 		l_c.add(panelBottom, BorderLayout.SOUTH);
-
-		setSize(340,430);
+		l_c.add(imagePanel, BorderLayout.NORTH);
+		
+		image = MarvinImageIO.loadImage("./lena.gif");
+		backupImage = image.clone();
+		imagePanel.setImage(image);
+		
+		setSize(image.getWidth() + 50,image.getHeight() + 100);
 		setVisible(true);
 	}
 
