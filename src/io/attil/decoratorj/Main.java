@@ -28,7 +28,7 @@ public class Main extends JFrame implements ActionListener {
 	private JButton buttonFlip,
 					buttonGaussianBlur,
 					buttonUndo,
-					buttonReset;
+					buttonCommit;
 
 	private MarvinImagePanel imagePanel;
 	private Image image;
@@ -46,14 +46,14 @@ public class Main extends JFrame implements ActionListener {
 		buttonGaussianBlur.addActionListener(this); 
 		buttonUndo = new JButton("Undo");
 		buttonUndo.addActionListener(this); 
-		buttonReset = new JButton("Reset");
-		buttonReset.addActionListener(this); 
+		buttonCommit = new JButton("Commit");
+		buttonCommit.addActionListener(this); 
 
 		panelBottom = new JPanel();
 		panelBottom.add(buttonFlip);
 		panelBottom.add(buttonGaussianBlur);
 		panelBottom.add(buttonUndo);
-		panelBottom.add(buttonReset); 
+		panelBottom.add(buttonCommit); 
 
 		// ImagePanel 
 		imagePanel = new MarvinImagePanel();
@@ -86,6 +86,9 @@ public class Main extends JFrame implements ActionListener {
 		}
 		else if(e.getSource() == buttonUndo){
 			image = image.getParent();
+		}
+		else if(e.getSource() == buttonCommit){
+			image = new BaseImage(image.getInternalImage());
 		}
 		refreshImage();
 	}
