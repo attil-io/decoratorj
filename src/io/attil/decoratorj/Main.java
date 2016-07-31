@@ -31,8 +31,7 @@ public class Main extends JFrame implements ActionListener {
 					buttonReset;
 
 	private MarvinImagePanel imagePanel;
-	private MarvinImage      image,
-							 backupImage;
+	private Image image;
 	
 
 	private MarvinImagePlugin imagePlugin;
@@ -64,11 +63,12 @@ public class Main extends JFrame implements ActionListener {
 		l_c.add(panelBottom, BorderLayout.SOUTH);
 		l_c.add(imagePanel, BorderLayout.NORTH);
 		
-		image = MarvinImageIO.loadImage("./lena.gif");
-		backupImage = image.clone();
-		imagePanel.setImage(image);
+		MarvinImage marvinImage = MarvinImageIO.loadImage("./lena.gif");
+		image = new BaseImage(marvinImage);
 		
-		setSize(image.getWidth() + 50,image.getHeight() + 100);
+		refreshImage();
+		
+		setSize(marvinImage.getWidth() + 50, marvinImage.getHeight() + 100);
 		setVisible(true);
 	}
 
@@ -78,19 +78,18 @@ public class Main extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e){
-		image = backupImage.clone();
 		if (e.getSource() == buttonFlip) {
-			imagePlugin = MarvinPluginLoader.loadImagePlugin("org.marvinproject.image.transform.flip.jar");
-			imagePlugin.process(image, image);
+			image = new ImageFlipper(image);
 		}
 		else if (e.getSource() == buttonGaussianBlur) {
-			imagePlugin = MarvinPluginLoader.loadImagePlugin("org.marvinproject.image.blur.gaussianBlur.jar");
-			imagePlugin.process(image, image);
+			image = new BlurFilter(image);
 		}
 		else if(e.getSource() == buttonInvert){
 		}
-		image.update();
-		backupImage = image.clone();
-		imagePanel.setImage(image); 
+		refreshImage();
+	}
+	
+	public void refreshImage() {
+		imagePanel.setImage(image.getInternalImage());
 	}
 }
