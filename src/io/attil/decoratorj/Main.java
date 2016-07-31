@@ -13,6 +13,11 @@ import javax.swing.JPanel;
 import marvin.gui.MarvinImagePanel;
 import marvin.image.MarvinImage;
 import marvin.io.MarvinImageIO; 
+import marvin.image.MarvinImageMask; 
+import marvin.plugin.MarvinImagePlugin; 
+import marvin.util.MarvinPluginLoader;
+
+
 
 public class Main extends JFrame implements ActionListener { 
 	private static final long serialVersionUID = 1L;
@@ -20,7 +25,7 @@ public class Main extends JFrame implements ActionListener {
 
 	private JPanel  panelBottom; 
 
-	private JButton buttonGray,
+	private JButton buttonFlip,
 					buttonEdgeDetector,
 					buttonInvert,
 					buttonReset;
@@ -29,12 +34,15 @@ public class Main extends JFrame implements ActionListener {
 	private MarvinImage      image,
 							 backupImage;
 	
+
+	private MarvinImagePlugin imagePlugin;
+
 	public Main() { 
 		super("First Application");
 
 		// Create Graphical Interface 
-		buttonGray = new JButton("Gray");
-		buttonGray.addActionListener(this); 
+		buttonFlip = new JButton("Flip");
+		buttonFlip.addActionListener(this); 
 		buttonEdgeDetector = new JButton("EdgeDetector");
 		buttonEdgeDetector.addActionListener(this); 
 		buttonInvert = new JButton("Invert");
@@ -43,7 +51,7 @@ public class Main extends JFrame implements ActionListener {
 		buttonReset.addActionListener(this); 
 
 		panelBottom = new JPanel();
-		panelBottom.add(buttonGray);
+		panelBottom.add(buttonFlip);
 		panelBottom.add(buttonEdgeDetector);
 		panelBottom.add(buttonInvert);
 		panelBottom.add(buttonReset); 
@@ -70,11 +78,17 @@ public class Main extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e){
-		if (e.getSource() == buttonGray) {
+		image = backupImage.clone();
+		if (e.getSource() == buttonFlip) {
+			imagePlugin = MarvinPluginLoader.loadImagePlugin("org.marvinproject.image.transform.flip.jar");
+			imagePlugin.process(image, image);
 		}
 		else if (e.getSource() == buttonEdgeDetector) {
 		}
 		else if(e.getSource() == buttonInvert){
 		}
+		image.update();
+		backupImage = image.clone();
+		imagePanel.setImage(image); 
 	}
 }
