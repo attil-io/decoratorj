@@ -33,9 +33,6 @@ public class Main extends JFrame implements ActionListener {
 	private MarvinImagePanel imagePanel;
 	private Image image;
 	
-
-	private MarvinImagePlugin imagePlugin;
-
 	public Main() { 
 		super("First Application");
 
@@ -72,11 +69,6 @@ public class Main extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-	public static void main(String args[]){
-		Main t = new Main(); 
-		t.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-	}
-
 	public void actionPerformed(ActionEvent e){
 		if (e.getSource() == buttonFlip) {
 			image = new ImageFlipper(image);
@@ -93,7 +85,12 @@ public class Main extends JFrame implements ActionListener {
 		refreshImage();
 	}
 	
-	public void refreshImage() {
+	private void refreshImage() {
 		imagePanel.setImage(image.getInternalImage());
+	}
+
+	public static void main(String args[]){
+		Main t = new Main(); 
+		t.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 	}
 }
