@@ -27,7 +27,7 @@ public class Main extends JFrame implements ActionListener {
 
 	private JButton buttonFlip,
 					buttonGaussianBlur,
-					buttonInvert,
+					buttonUndo,
 					buttonReset;
 
 	private MarvinImagePanel imagePanel;
@@ -44,15 +44,15 @@ public class Main extends JFrame implements ActionListener {
 		buttonFlip.addActionListener(this); 
 		buttonGaussianBlur = new JButton("Gaussian");
 		buttonGaussianBlur.addActionListener(this); 
-		buttonInvert = new JButton("Invert");
-		buttonInvert.addActionListener(this); 
+		buttonUndo = new JButton("Undo");
+		buttonUndo.addActionListener(this); 
 		buttonReset = new JButton("Reset");
 		buttonReset.addActionListener(this); 
 
 		panelBottom = new JPanel();
 		panelBottom.add(buttonFlip);
 		panelBottom.add(buttonGaussianBlur);
-		panelBottom.add(buttonInvert);
+		panelBottom.add(buttonUndo);
 		panelBottom.add(buttonReset); 
 
 		// ImagePanel 
@@ -84,7 +84,8 @@ public class Main extends JFrame implements ActionListener {
 		else if (e.getSource() == buttonGaussianBlur) {
 			image = new BlurFilter(image);
 		}
-		else if(e.getSource() == buttonInvert){
+		else if(e.getSource() == buttonUndo){
+			image = image.getParent();
 		}
 		refreshImage();
 	}

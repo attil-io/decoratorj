@@ -4,4 +4,5 @@ import marvin.image.MarvinImage;
 
 public interface Image {
 	MarvinImage getInternalImage();
+	Image getParent();
 }

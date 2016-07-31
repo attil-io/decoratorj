@@ -14,6 +14,7 @@ public class BaseImage implements Image {
 		return imageObject.clone();
 	}
 
+	@Override
 	public Image getParent() {
 		return this;
 	}
